@@ -34,6 +34,18 @@ class TripController extends Controller
         $blos = Blog::take(2)->get();
         return view('front.tours.tours-details', compact('trip', 'setting', 'footer_trips', 'blos','destinations'));
     }
+
+
+    public function getTrips($id)
+    {
+       $trips = Trips::where('trips_type_id',$id)->get();
+       $setting = Setting::first();
+       $destinations   =   Destenation::take(3)->get();
+       $footer_trips = Trips::latest()->take(5)->get();
+       $blos = Blog::take(2)->get();
+       return view('front.tour',compact('trips','setting', 'footer_trips', 'blos','destinations'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

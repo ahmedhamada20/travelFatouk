@@ -52,6 +52,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('trips-cart/{id}', [TripController::class, 'tours_cart'])->name('user_trips_cart');
         Route::get('transfer-cart/{id}', [TripController::class, 'transfer_cart'])->name('user_transfer_cart');
         Route::get('package-cart/{id}', [TripController::class, 'toursuser_package_cartcart'])->name('user_package_cart');
+        Route::get('getTrips/{id}', [TripController::class, 'getTrips'])->name('getTrips');
 
 
 
