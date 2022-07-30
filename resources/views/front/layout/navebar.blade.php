@@ -51,11 +51,39 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            @auth
 
-                        <div class="item">
-                            <a href="{{route('login')}}" class="btn-secondary">
-                                {{trans('app.login')}} <i class='bx bx-log-in-circle'></i>
+                            <div class="row">
+
+                                <div class="col">
+
+                                    <a href="{{ route('user_dashboard') }}" class="btn-secondary">
+                                        {{ trans('app.dashboard') }}
+                                    </a>
+                                </div>
+
+                                <div class="col">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+
+                                        <a :href="route('logout')" onclick="event.preventDefault();
+                                            this.closest('form').submit();" class="btn-secondary">
+                                            {{trans('app.logout')}} </i>
+                                        </a>
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+                            @else
+                            <a href="{{ route('login') }}" class="btn-secondary">
+                                {{ trans('app.login') }} <i class='bx bx-log-in-circle'></i>
                             </a>
+                            @endauth
+
                         </div>
 
                         <div class="item">

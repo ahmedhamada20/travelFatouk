@@ -64,8 +64,8 @@ class OrderController extends Controller
                 'total' => $detlies_cart->total,
                 'title' => "طلب جديد",
             ];
-            Mail::to(Auth::user()->email)->send(new OrderShipped($data));
-            Mail::to(getUserTypeAdmin())->send(new OrderShipped($data));
+            // Mail::to(Auth::user()->email)->send(new OrderShipped($data));
+            // Mail::to(getUserTypeAdmin())->send(new OrderShipped($data));
             Cart::destroy($request->cart_id);
             \Gloudemans\Shoppingcart\Facades\Cart::destroy();
             return redirect(RouteServiceProvider::HOME);
@@ -95,8 +95,8 @@ class OrderController extends Controller
                 'total' => $detlies_cart->total,
                 'title' => "طلب جديد",
             ];
-            Mail::to($user->email)->send(new OrderShipped($data));
-            Mail::to(getUserTypeAdmin())->send(new OrderShipped($data));
+            // Mail::to($user->email)->send(new OrderShipped($data));
+            // Mail::to(getUserTypeAdmin())->send(new OrderShipped($data));
 
             Cart::destroy($request->cart_id);
             \Gloudemans\Shoppingcart\Facades\Cart::destroy();

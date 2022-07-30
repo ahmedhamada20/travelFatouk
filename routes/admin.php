@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\TermsServiceController;
 use App\Http\Controllers\Admin\TestMeniolController;
 use App\Http\Controllers\Admin\TransferController;
 use App\Http\Controllers\Admin\TripsController;
+use App\Http\Controllers\Admin\TripTrypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WhyController;
 use Illuminate\Support\Facades\Auth;
@@ -118,6 +119,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::resource('additional_pakage', AdditionalPakageController::class);
 
         Route::resource('moreDetails_pakage', MoreDetailsPakageController::class);
+
+
+        Route::get('TripsType', [TripTrypeController::class, 'index'])->name('TripsType');
+        Route::get('add-TripsType', [TripTrypeController::class, 'create'])->name('add_TripsType');
+        Route::get('edit-TripsType/{id}', [TripTrypeController::class, 'edit'])->name('edit_TripsType');
+        Route::get('delete-TripsType/{id}', [TripTrypeController::class, 'destroy'])->name('delete_TripsType');
+        Route::post('update-TripsType/{id}', [TripTrypeController::class, 'update'])->name('update_TripsType');
+        Route::post('store-TripsType', [TripTrypeController::class, 'store'])->name('store_TripsType');
 
 
         Route::get('why', [WhyController::class, 'index'])->name('why');

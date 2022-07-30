@@ -85,6 +85,7 @@ class TripsController extends Controller
                 'transfer_id' => $data->transfer_id,
                 'rate' => $data->rate,
                 'category_id' => $data->category_id,
+                'trips_type_id' => $request->trips_type_id,
             ]);
 
             $duplication->extras()->syncWithoutDetaching($data->extras);
@@ -109,6 +110,7 @@ class TripsController extends Controller
                 'transfer_id' => $request->transfer_id,
                 'rate' => $request->rate,
                 'category_id' => $request->category_id,
+                'trips_type_id' => $request->trips_type_id,
             ]);
             $data->extras()->attach($request->extra_id);
             $data->days()->attach($request->day_id);
@@ -178,6 +180,7 @@ class TripsController extends Controller
                 'transfer_id' => $request->transfer_id,
                 'rate' => $request->rate,
                 'category_id' => $request->category_id,
+                'trips_type_id' => $request->trips_type_id,
 
             ]);
 

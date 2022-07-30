@@ -166,6 +166,19 @@
                         <br>
 
                         <div class="row">
+
+
+
+                            <div class="col">
+                                <label>TripsType</label>
+                                <select class="form-control" name="trips_type_id" required >
+                                    <option value="" disabled selected>-- Choose --</option>
+                                    @foreach(App\Models\TripTrype::all() as  $data)
+                                        <option value="{{$data->id}}">{{$data->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="col">
                                 <label>destination</label>
                                 <select class="form-control" name="destination_id" required>

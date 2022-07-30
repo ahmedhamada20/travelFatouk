@@ -125,17 +125,17 @@
                             Travel has helped us to understand the meaning of life and it has helped us become better people. Each time we travel, we see the world with new eyes.
                         </p>
                         <div class="search-form">
-                            <form id="searchForm">
+                            <form action="{{ route('trips') }}" id="searchForm" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="select-box">
                                             <i class='bx bx-map-alt'></i>
-                                            <select class="form-control">
-                                                <option data-display='Destination'>Nothing</option>
-                                                <option value="1">North America</option>
-                                                <option value="2">Spain Madrid</option>
-                                                <option value="3">Japan Tokyo</option>
-                                                <option value="4">Europe City</option>
+                                            <select class="form-control text-black" id="inputGroupSelect01" name="destination_id" required>
+                                                <option value="" selected disabled>{{trans('app.destination')}}</option>
+                                                @foreach(App\Models\Destenation::get() as $row)
+                                                    <option value="{{$row->id}}" >{{$row->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -145,19 +145,18 @@
                                             <input type="text" class="date-select form-control" placeholder="Depart Date" required="required"/>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-sm-6">
+                                    <div class="col-lg-12">
                                         <div class="select-box">
-                                            <i class='bx bx-package'></i>
-                                            <select class="form-control">
-                                                <option data-display='Travel Type'>Travel Type</option>
-                                                <option value="1">City Tour</option>
-                                                <option value="2">Family Tours</option>
-                                                <option value="3">Seasonal Tours</option>
-                                                <option value="4">Outdoor Activities</option>
+                                            <i class='bx bx-calendar'></i>
+                                            <select class="form-control text-black" name="days">
+                                                <option value="" selected disabled>{{trans('app.av_day')}}</option>
+                                                @foreach(App\Models\Day::get() as $row)
+                                                    <option value="{{$row->id}}" >{{$row->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-sm-6">
+                                    {{-- <div class="col-lg-6 col-sm-6">
                                         <div class="select-box">
                                             <i class='bx bx-time'></i>
                                             <select class="form-control">
@@ -168,9 +167,9 @@
                                                 <option value="4">30 Days</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-12 mt-15">
-                                        <button type="button" class="btn-primary">Search Here</button>
+                                        <button type="submit" class="btn-primary">Search Here</button>
                                     </div>
                                 </div>
                             </form>

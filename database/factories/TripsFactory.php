@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Destenation;
 use App\Models\Transfer;
+use App\Models\TripTrype;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,10 @@ class TripsFactory extends Factory
      */
     public function definition()
     {
+        TripTrype::create([
+            'name' => $this->faker->name,
+        ]);
+
         return [
             'name' =>['en' => $this->faker->name, 'ar' => $this->faker->name , 'ru' =>$this->faker->name  , 'it' => $this->faker->name  , 'de' => $this->faker->name ],
             'notes' => ['ar' => $this->faker->paragraph, 'en' => $this->faker->paragraph , 'ru' => $this->faker->paragraph , 'it' => $this->faker->paragraph , 'de' => $this->faker->paragraph],
@@ -28,6 +33,7 @@ class TripsFactory extends Factory
             'destination_id' => Destenation::all()->random()->id,
             'transfer_id' => Transfer::all()->random()->id,
             'rate' => $this->faker->randomElement([1, 2, 4, 4, 5]),
+            'trips_type_id' => TripTrype::all()->random()->id,
         ];
     }
 }

@@ -171,11 +171,11 @@ class CartController extends Controller
 
                 if (auth()->user()) {
 
-                    $this->validate($request, [
-                        'user_notes' => 'required',
-                    ], [
-                        'user_notes.required' => 'the user notes is required',
-                    ]);
+                    // $this->validate($request, [
+                    //     'user_notes' => 'required',
+                    // ], [
+                    //     'user_notes.required' => 'the user notes is required',
+                    // ]);
 
                     if (auth()->user()->countries_id == 173) {
                         $newCart_admin = new Cart();
@@ -207,17 +207,17 @@ class CartController extends Controller
                     return view('front.invoices_trips.invoice_admin', compact('newCart_admin', 'setting', 'blos', 'footer_trips'));
                 } else {
 
-                    $this->validate($request, [
-                        'name_user' => 'required',
-                        'name_email' => 'required',
-                        'name_phone' => 'required',
-                        'user_notes' => 'required',
-                    ], [
-                        'name_user.required' => 'the user airline is required',
-                        'name_email.required' => 'the user number is required',
-                        'name_phone.required' => 'the user form is required',
-                        'user_notes.required' => 'the user point is required',
-                    ]);
+                    // $this->validate($request, [
+                    //     'name_user' => 'required',
+                    //     'name_email' => 'required',
+                    //     'name_phone' => 'required',
+                    //     'user_notes' => 'required',
+                    // ], [
+                    //     'name_user.required' => 'the user airline is required',
+                    //     'name_email.required' => 'the user number is required',
+                    //     'name_phone.required' => 'the user form is required',
+                    //     'user_notes.required' => 'the user point is required',
+                    // ]);
 
 
                     $newCart_cutsmer = new Cart();

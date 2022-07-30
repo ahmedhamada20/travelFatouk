@@ -24,6 +24,10 @@ class SettingSeeder extends Seeder
         $new->logo = "test";
         $new->name = "test";
         $new->description = "test";
+        $new->footer_image = "test";
+        $new->footer_image_link = "test";
+        $new->transfer_image = "test";
+        $new->footer_logo = "test";
         $new->phone = "0111111111";
         $new->Fax = "0111111111";
         $new->email = "test@test.com";

@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('price_adult_EN')->default(0);
             $table->string('price_child_EG')->default(0);
             $table->string('price_child_EN')->default(0);
+            $table->foreignId('trips_type_id')->references('id')->on('trip_trypes')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

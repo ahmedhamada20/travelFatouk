@@ -55,7 +55,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
 
-
         Route::get('blogs', [BlogController::class, 'index'])->name('user_blog');
         Route::get('transfer-car/{id}',[TransferController::class,'car'])->name('transfer_car');
         Route::get('transfer-car-details/{id}',[TransferController::class,'car_details'])->name('transfer_car_details');

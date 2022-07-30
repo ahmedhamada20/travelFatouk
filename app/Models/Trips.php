@@ -22,8 +22,14 @@ class Trips extends Model
         'price_child_EG',
         'price_adult_EN',
         'price_child_EN',
+        'trips_type_id',
         'rate',
     ];
+
+    public function TripsType()
+    {
+        return$this->belongsTo(TripTrype::class,'trips_type_id');
+    }
 
     public function included()
     {

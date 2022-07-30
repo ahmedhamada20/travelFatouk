@@ -134,7 +134,7 @@
                                 <label>TripsType</label>
                                 <select class="form-control" name="trips_type_id" required >
                                     <option value="" disabled selected>-- Choose --</option>
-                                    @foreach(App\Models\TripsType::all() as  $row)
+                                    @foreach(App\Models\TripTrype::all() as  $row)
                                         <option value="{{$row->id}}" {{ $row->id == $data->trips_type_id ? 'selected' : null }}>{{$row->name}}</option>
                                     @endforeach
                                 </select>
