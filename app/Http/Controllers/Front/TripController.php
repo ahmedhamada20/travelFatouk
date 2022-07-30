@@ -38,7 +38,7 @@ class TripController extends Controller
 
     public function getTrips($id)
     {
-       $trips = Trips::where('trips_type_id',$id)->get();
+       $trips = Trips::where('trips_type_id',decrypt($id))->get();
        $setting = Setting::first();
        $destinations   =   Destenation::take(3)->get();
        $footer_trips = Trips::latest()->take(5)->get();

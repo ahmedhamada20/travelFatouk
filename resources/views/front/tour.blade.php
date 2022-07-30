@@ -35,7 +35,7 @@
                         <ul id="control" class="list-control">
                             <li data-filter="all">All</li>
                             @foreach (App\Models\TripTrype::all() as $TripTryp)
-                            <a href="{{ route('getTrips',$TripTryp->id) }}" data-filter="{{ $TripTryp->id }}">{{ $TripTryp->name }}</li>
+                            <a href="{{ route('getTrips',encrypt($TripTryp->id)) }}" class="ml-2">{{ $TripTryp->name }}</li>
                             @endforeach
                            
                         </ul>
@@ -44,7 +44,7 @@
             </div>
             <div class="row filtr-container">
                 @foreach ($trips as $trip)
-                <div class="col-lg-4 col-md-6 filtr-item" data-category="{{ App\Models\Trips::whereIn('trips_type_id',[$trip->id])->get() }}" data-sort="value">
+                <div class="col-lg-4 col-md-6 filtr-item" data-category="1" data-sort="value">
                     <div class="item-single mb-30">
                         <div class="image">
                             @if($trip->photo)

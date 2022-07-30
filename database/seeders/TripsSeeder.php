@@ -41,7 +41,7 @@ class TripsSeeder extends Seeder
         for ($i = 1; $i <= 50 ; $i++) {
             Photo::insert([
                 'Filename'     => rand(1,5) . ".jpg",
-                'photoable_id' => rand(1,5),
+                'photoable_id' => $i,
                 'photoable_type' => 'App\Models\Trips'
             ]);
         }
