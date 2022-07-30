@@ -82,7 +82,7 @@ class Trips extends Model
 
     public function days()
     {
-        return $this->belongsToMany(Day::class, 'trips_days','trips_id','day_id');
+        return $this->belongsToMany(Day::class, 'trips_days');
     }
 
     public function packages()

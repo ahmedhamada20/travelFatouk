@@ -3,6 +3,7 @@
 
 use App\Models\Destenation;
 use App\Models\Photo;
+use App\Models\Trips;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 
@@ -149,6 +150,19 @@ if (!function_exists('getTotalOrders')) {
     {
         $totalOrder = \App\Models\Order::where('user_id', $id)->sum('total');
         return $totalOrder;
+    }
+}
+if (!function_exists('getCountDayInTrips')) {
+    function getCountDayInTrips($id)
+    {
+        $trips = Trips::findorfail($id);
+      
+        $count = 0;
+        foreach ($trips->days as $row) {
+           
+            $count += $row->count('day_id');
+        }
+        return $count;
     }
 }
 
