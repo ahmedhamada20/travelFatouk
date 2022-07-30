@@ -25,7 +25,7 @@ class TransferController extends Controller
         $setting = Setting::first();
         $footer_trips = Trips::latest()->take(5)->get();
         $blos = Blog::take(2)->get();
-        return view('front.transfer.index', compact('transfers', 'setting', 'footer_trips', 'blos'));
+        return view('front.transfer', compact('transfers', 'setting', 'footer_trips', 'blos'));
     }
 
     public function car($id)
