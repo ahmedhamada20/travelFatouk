@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="title">
                                     <h3>
-                                        <a href="tours.html">{{$package->name}}</a>
+                                        <a href="{{ route('package_details',encrypt($package->id)) }}">{{$package->name}}</a>
                                     </h3>
                                     <span>${{$package->before_price}}</span>
                                 </div>

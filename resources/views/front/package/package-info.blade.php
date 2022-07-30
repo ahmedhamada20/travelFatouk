@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         
-                        <div class="col">
+                        {{-- <div class="col">
                             <div class="form-group">
                                 <label for="">Preferred Language</label>
                                <select class="form-control p-1" name="status" required>
@@ -90,7 +90,7 @@
                             </select>
                             </div>
                         </div>
-                           
+                            --}}
                         </div>
                         <hr>
                         <div class="row">

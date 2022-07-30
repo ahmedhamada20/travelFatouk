@@ -27,54 +27,71 @@
 
                 </div>
                 <div class="col-md-8 mt-5">
-                    <h2>Tours Name</h2>
-                    <p>tours type   rate destenation</p>
+                    <h2>{{ $package->name }}</h2>
+              
+                    <p>
+                        {!! $package->notes !!}
+                    </p>
 
-                    <h3>Over View</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </p>
-                    <h3>What's Included</h3>
+                    <h3>Included</h3>
                     <div class="row">
+                        @foreach ($package->included as $include)
                         <div class="col-md-6">
-                            <p><i class="fa-solid fa-check" style="color: green"></i> asdasdasdadsasd</p>
+                            <p><i class="fa-solid fa-check" style="color: green"></i> {{ $include->name }}</p>
                         </div>
-                        <div class="col-md-6">
-                            <p><i class="fa-solid fa-circle-xmark" style="color: red"></i> dsfsdfsdfsdfsdfsdfsdf</p>
-                        </div>
+                        @endforeach
+                        
                     </div>
-                    <h3>Please Note</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </p>
-                    <h3>Additional Info</h3>
+
+                   
+                    <h3>excluded</h3>
                     <div class="row">
+                        @foreach ($package->excluded as $exclude)
                         <div class="col-md-6">
-                            <p><i class="fa-solid fa-circle-info"></i> assdasdasdasdasd</p>
+                            <p><i class="fa-solid fa-circle-info"></i> {{ $exclude->name }}</p>
                         </div>
-                        <div class="col-md-6">
-                            <p><i class="fa-solid fa-circle-info"></i> assdasdasdasdasd</p>
-                        </div>
+                        @endforeach
+                      
+                        
                     </div>
-                    <h3>Cancellation Policy</h3>
-                    <p style="background-color: #d1d1d1; padding: 20px">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </p>
+
+                    <h3>additional</h3>
+                    <div class="row">
+                        @foreach ($package->additional as $additional)
+                        <div class="col-md-6">
+                            <p><i class="fa-solid fa-circle-info"></i> {{ $additional->name }}</p>
+                        </div>
+                        @endforeach
+                      
+                        
+                    </div>
+                   
                 </div>
                 <div class="col-md-4 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Price : 300</h3>
-                            <form action="">
+                            <h3>Price : {{ $package->price }}</h3>
+                            <form action="{{ route('information_package') }}" method="POST">
+                                @csrf
+
+                                <input type="hidden" name="package_id" value="{{ $package->id }}">
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="">Select Date</label>
-                                        <input type="date" class="form-control" name=""  id="">
+                                        <input type="date" class="form-control" name="data"  id="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="">Select time</label>
+                                        <input type="time" class="form-control" name="time"  id="">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="">Adult</label>
-                                        <input type="number" class="form-control" name="" value="0" id="">
+                                        <input type="number" class="form-control" name="adult_number" value="0" id="">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="">Child</label>
-                                        <input type="number" class="form-control" name="" value="0" id="">
+                                        <input type="number" class="form-control" name="child_number" value="0" id="">
                                     </div>
                                     <div class="col-md-12">
                                         <h3>Choose Extra</h3>
@@ -86,13 +103,17 @@
                                                     </button>
                                                 </h2>
                                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                                    @foreach ($package->extras as $extra)
                                                     <div class="accordion-body">
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                                        <p>
+                                                            {{ $extra->name }}
                                                         </p>
-                                                        <button class="btn btn-success">Price</button><br>
+                                                        <button class="btn btn-success">Price :: {{ $extra->price_person_en }}</button><br>
                                                         <label for="">Quantity</label>
                                                         <input type="number" name="" class="form-control" value="0" id="">
                                                     </div>
+                                                    @endforeach
+                                                   
                                                 </div>
                                             </div>
                                         </div>

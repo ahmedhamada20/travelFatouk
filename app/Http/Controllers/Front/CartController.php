@@ -234,10 +234,76 @@ class CartController extends Controller
 
                     return view('front.invoices_trips.invoice_custmer', compact('newCart_cutsmer', 'setting', 'blos', 'footer_trips'));
 
-
                 }
 
 
+            }else{
+                $package = Package::findorfail($request->package_id);
+                if (auth()->user()) {
+
+
+
+                    if (auth()->user()->countries_id == 173) {
+                        $newCart_admin = new Cart();
+                        $newCart_admin->user_airline = $request->user_airline;
+                        $newCart_admin->user_number = $request->user_number;
+                        $newCart_admin->user_form = $request->user_form;
+                        $newCart_admin->user_point = $request->user_point;
+                        $newCart_admin->user_notes = $request->user_notes;
+                        $newCart_admin->name_user = $request->name_user;
+                        $newCart_admin->name_email = $request->name_email;
+                        $newCart_admin->package_id = $request->package_id;
+
+                        // $newCart_admin->adulte = $request->adulte;
+                        // $newCart_admin->chiled = $request->chiled;
+                        // $newCart_admin->date = $request->date;
+                        // $newCart_admin->time = $request->time;
+
+
+                        $newCart_admin->total = \Gloudemans\Shoppingcart\Facades\Cart::subtotal() + $package->price + ($request->adulte * $package->price_adult_EG) + ($request->chiled  * $package->price_child_EG);
+                        $newCart_admin->save();
+                    } else {
+                        $newCart_admin = new Cart();
+                        $newCart_admin->user_airline = $request->user_airline;
+                        $newCart_admin->user_number = $request->user_number;
+                        $newCart_admin->user_form = $request->user_form;
+                        $newCart_admin->user_point = $request->user_point;
+                        $newCart_admin->user_notes = $request->user_notes;
+                        $newCart_admin->name_user = $request->name_user;
+                        $newCart_admin->name_email = $request->name_email;
+                        $newCart_admin->package_id = $request->package_id;
+                        // $newCart_admin->adulte = $request->adulte;
+                        // $newCart_admin->chiled = $request->chiled;
+                        // $newCart_admin->date = $request->date;
+                        // $newCart_admin->time = $request->time;
+                        $newCart_admin->total = \Gloudemans\Shoppingcart\Facades\Cart::subtotal() + $package->price + ($request->adulte * $package->price_adult_EN) + ($request->chiled  * $package->price_child_EN);
+                        $newCart_admin->save();
+                    }
+
+
+                    return view('front.invoices_pacakge.invoice_admin', compact('newCart_admin', 'setting', 'blos', 'footer_trips'));
+                } else {
+
+
+
+                    $newCart_cutsmer = new Cart();
+                    $newCart_cutsmer->user_airline = $request->user_airline;
+                    $newCart_cutsmer->user_number = $request->user_number;
+                    $newCart_cutsmer->user_form = $request->user_form;
+                    $newCart_cutsmer->user_point = $request->user_point;
+                    $newCart_cutsmer->user_notes = $request->user_notes;
+                    $newCart_cutsmer->name_user = $request->name_user;
+                    $newCart_cutsmer->name_email = $request->name_email;
+                    $newCart_cutsmer->package_id = $request->package_id;
+                    // $newCart_cutsmer->adulte = $request->adulte;
+                    // $newCart_cutsmer->chiled = $request->chiled;
+                    // $newCart_cutsmer->date = $request->date;
+                    // $newCart_cutsmer->time = $request->time;
+                    $newCart_cutsmer->total = \Gloudemans\Shoppingcart\Facades\Cart::subtotal() + $package->price + ($request->adulte * $package->price_adult_EN) + ($request->chiled  * $package->price_child_EN);
+                    $newCart_cutsmer->save();
+
+                    return view('front.invoices_pacakge.invoice_custmer', compact('newCart_cutsmer', 'setting', 'blos', 'footer_trips'));
+                }
             }
         // } catch (\Exception $exception) {
         //    return Redirect::back()->withErrors(['error' => __('app.error')]);

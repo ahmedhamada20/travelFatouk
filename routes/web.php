@@ -60,6 +60,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('transfer-car-details/{id}',[TransferController::class,'car_details'])->name('transfer_car_details');
         Route::resource('information',TransferInformationController::class);
         Route::post('information_trips',[TransferInformationController::class,'information_trips'])->name('information_trips');
+        Route::post('information_package',[TransferInformationController::class,'information_package'])->name('information_package');
         Route::view('single_invoices', 'front.transfer-wizered')->name('single_invoices');
         Route::get('transfer/{id}', [TransferController::class, 'show'])->name('user_transfer_details');
         Route::get('trips/{id}', [TripController::class, 'details'])->name('user_trips_details');

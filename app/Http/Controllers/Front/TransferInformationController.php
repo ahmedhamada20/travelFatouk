@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Car;
 use App\Models\CartCarTransfer;
+use App\Models\CartPacakge;
 use App\Models\CartTrips;
+use App\Models\Package;
 use App\Models\Setting;
 use App\Models\Transfer;
 use App\Models\Trips;
@@ -42,13 +44,29 @@ class TransferInformationController extends Controller
      */
 
 
+     public function information_package(Request $request)
+     {
+        
+        $setting = Setting::first();
+        $trip = Package::findorfail($request->package_id);
+        $blos = Blog::take(2)->get();
+        $footer_trips = Trips::latest()->take(5)->get();
+        CartPacakge::create([
+            'data' => $request->data,
+            'time' => $request->time,
+            'adult_number' => $request->adult_number,
+            'child_number' => $request->child_number,
+            'packages_id' => $request->package_id,
+        ]);
+        return view('front.package.package-info', compact('setting', 'trip', 'blos', 'footer_trips'));
+     }
 
 
     public function information_trips(Request $request)
     {
 
         $setting = Setting::first();
-        $trip = Trips::findorfail(1);
+        $trip = Trips::findorfail($request->trips_id);
         $blos = Blog::take(2)->get();
         $footer_trips = Trips::latest()->take(5)->get();
         CartTrips::create([
