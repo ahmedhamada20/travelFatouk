@@ -402,12 +402,14 @@
         <h1 class="h1 text-center" id="pageHeaderTitle">Available Car For This Route</h1>
         @foreach($trasfair->carsTransfer as $car)
         <article class="postcard dark blue" style="background-color: black">
-         
-                 <a class="postcard__img_link" href="#">
-                <img class="postcard__img"
-                    src="{{asset('admin/pictures/car/'.$car->id . '/' .$car->photo->Filename)}}"
-                    alt="Image Title" style="height: 350px; width: 350px" />
-            </a>
+         @if($car->photo)
+         <a class="postcard__img_link" href="#">
+            <img class="postcard__img"
+                src="{{asset('admin/pictures/car/'.$car->id . '/' .$car->photo->Filename)}}"
+                alt="Image Title" style="height: 350px; width: 350px" />
+        </a>
+         @endif
+                
       
            
             <div class="postcard__text">

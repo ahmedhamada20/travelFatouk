@@ -41,17 +41,17 @@
                                         <!--Slider-->
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                                             <div class="carousel-indicators">
-                                                @foreach($transfer->photos as $transfers)
+                                                @foreach($transfer->photos as $key => $transfers)
                                                     <button type="button" data-bs-target="#carouselExampleIndicators"
                                                             data-bs-slide-to="{{ $loop->index }}"
-                                                            class="{{ $loop->first ? 'active' : '' }}" aria-current="true"
+                                                            class="{{$key == 0 ? 'active' : '' }}" aria-current="true"
                                                             aria-label="Slide 1"></button>
                                                 @endforeach
                                             </div>
             
                                             <div class="carousel-inner">
-                                                @foreach($transfer->photos as $transfers)
-                                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                @foreach($transfer->photos as $key => $transfers)
+                                                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                                                         <img
                                                             src="{{asset('admin/pictures/transfer/' . $transfer->id .'/' .$transfers->Filename)}}"
                                                             class="d-block w-100" alt="..."
